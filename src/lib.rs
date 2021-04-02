@@ -1,5 +1,5 @@
 use earcutr::earcut;
-use imgui::{im_str, Ui, WindowDrawList};
+use imgui::{im_str, Ui, DrawListMut};
 use plotters_backend::{
     text_anchor::{HPos, VPos},
     BackendColor, BackendCoord, BackendStyle, BackendTextStyle, DrawingBackend, DrawingErrorKind,
@@ -19,12 +19,12 @@ impl Display for ImguiError {
 
 pub struct ImguiBackend<'a> {
     ui: &'a Ui<'a>,
-    draw_list: &'a WindowDrawList<'a>,
+    draw_list: &'a DrawListMut<'a>,
     size: (u32, u32),
 }
 
 impl<'a> ImguiBackend<'a> {
-    pub fn new(ui: &'a Ui, draw_list: &'a WindowDrawList, size: (u32, u32)) -> Self {
+    pub fn new(ui: &'a Ui, draw_list: &'a DrawListMut, size: (u32, u32)) -> Self {
         Self {
             ui,
             draw_list,
